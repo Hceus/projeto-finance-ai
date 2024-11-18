@@ -1,8 +1,8 @@
 "use client";
 
-import { Transaction } from "@prisma/client";
 import { ColumnDef } from "@tanstack/react-table";
 import TransactionTypeBadge from "../_components/type-badge";
+import { Transaction } from "@prisma/client";
 
 export const transactionColumns: ColumnDef<Transaction>[] = [
   {
