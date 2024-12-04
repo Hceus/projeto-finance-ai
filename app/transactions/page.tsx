@@ -6,6 +6,7 @@ import Navbar from "../_components/navbar";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { ScrollArea } from "../_components/ui/scroll-area";
+import { canUserAddTransactions } from "../_data/can-user-add-transaction";
 
 const TranscripitionPage = async () => {
   const { userId } = await auth();
@@ -20,6 +21,8 @@ const TranscripitionPage = async () => {
     },
   });
 
+  const userCanAddTransaction = await canUserAddTransactions();
+
   return (
     <>
       <Navbar />
@@ -27,7 +30,7 @@ const TranscripitionPage = async () => {
         {/* Titulo e Botao */}
         <div className="flex w-full items-center justify-between">
           <h1 className="text-2xl font-bold">Transações</h1>
-          <AddTrasanctionButton />
+          <AddTrasanctionButton userCanAddTransaction={userCanAddTransaction} />
         </div>
         <ScrollArea>
           <DataTable columns={transactionColumns} data={transactions} />
